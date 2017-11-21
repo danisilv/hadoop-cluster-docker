@@ -44,7 +44,9 @@ RUN chmod +x ~/start-hadoop.sh && \
     chmod +x $HADOOP_HOME/sbin/start-yarn.sh 
 
 # format namenode
+RUN apt-get install dos2unix
+RUN dos2unix /usr/local/hadoop/etc/hadoop/hadoop-env.sh
 RUN /usr/local/hadoop/bin/hdfs namenode -format
 
-CMD [ "sh", "-c", "service ssh start; bash"]
+CMD [ "sh", "-c", "bash; service ssh start"]
 

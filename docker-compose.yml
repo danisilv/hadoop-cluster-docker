@@ -1,0 +1,36 @@
+version: "3.3"
+services:
+  master:
+    image: myhadoop:1.0
+    ports:
+    - "50070:50070"
+    - "8088:8088"
+    networks:
+      - net_hadoop
+    stdin_open: true
+    tty: true
+    hostname: master
+    # volumes:
+    # - master:/root/hdfs/namenode
+  slave1:
+    image: myhadoop:1.0
+    networks:
+      - net_hadoop
+    stdin_open: true
+    tty: true
+    hostname: slave1
+    # volumes:
+    # - slave1:/root/hdfs/datanode
+  slave2:
+    image: myhadoop:1.0
+    networks:
+      - net_hadoop
+    stdin_open: true
+    tty: true
+    hostname: slave2
+    # volumes:
+    # - slave2:/root/hdfs/datanode
+
+networks:
+  net_hadoop:
+    driver: bridge
